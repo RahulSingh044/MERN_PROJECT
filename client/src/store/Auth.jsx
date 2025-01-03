@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch(
         `${import.meta.env.VITE_REACT_APP_BASEURL}/api/auth/user`,
         {
+            
           method: "GET",
           headers: {
             Authorization: authToken,
