@@ -11,7 +11,13 @@ const cors = require('cors');
 
 
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: `${process.env.FRONTEND_URL}`,
+        credentials: true,
+        methods:["POST", "PUT", "PATCH","DELETE","GET"]
+    }
+));
 
 
 // Middleware to parse JSON request bodies
