@@ -13,7 +13,7 @@ const cors = require('cors');
 
 app.use(cors(
     {
-        origin: `${process.env.FRONTEND_URL}`,
+        origin: ["https://mern-project-3mcr.vercel.app/"],
         credentials: true,
         methods:["POST", "PUT", "PATCH","DELETE","GET"]
     }
