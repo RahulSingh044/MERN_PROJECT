@@ -17,7 +17,7 @@
             "dest":"/",
             "methods": ["POST","GET","PUT","DELETE","PATCH","OPTIONS"],
             "headers": {
-                "Access-control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "*"
              }
         }
     ]
