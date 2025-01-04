@@ -17,7 +17,7 @@ export default function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        withcredentials: true,
+        withcredentials: false,
         body: JSON.stringify(data),
       });
       const result = await response.json();
