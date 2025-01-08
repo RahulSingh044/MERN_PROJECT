@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext, createContext } from "react";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [service, setService] = useState([]);
@@ -13,14 +13,13 @@ export const AuthProvider = ({ children }) => {
 
   
   const storerTokenInLS = (serverToken) => {
-    localStorage.setItem("token", serverToken);
-    setToken(serverToken); 
+    setToken(serverToken);
+    return localStorage.setItem("token", serverToken); 
   };
 
-
   const LogoutUser = () => {
-    localStorage.removeItem("token");
     setToken(""); 
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
   };
 
