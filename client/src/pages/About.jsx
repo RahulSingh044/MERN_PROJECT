@@ -3,7 +3,7 @@ import React from 'react'
 export default function About() {
   return (
     <div className='min-h-screen bg-slate-800 px-44'>
-    <section className='h-full'>
+    <section className='h-full mt-20'>
         <main className='p-3 w-full'>
           <div className='flex gap-32 w-full mt-3'>
             <div className='left-side w-1/2 h-full'>

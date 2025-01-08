@@ -35,7 +35,7 @@ function AppRoutes() {
   };
 
   return (
-    <div className="bg-slate-800 w-screen text-white">
+    <div className="bg-slate-800 min-h-screen overflow-x-hidden text-white">
       {/* Conditionally render the Navbar */}
       {showNavbar() && <Navbar />}
 
