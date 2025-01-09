@@ -19,7 +19,11 @@ export default function AdminContact() {
         },
       });
       const data = await response.json();
-      setContact(data);
+      if(!data || !Array.isArray(data)){
+        setContact([])
+      }else{
+        setContact(data);
+      }
     } catch (error) {
       console.error(error.message);
     }
@@ -52,6 +56,15 @@ export default function AdminContact() {
     getContactsData();
   }, []);
 
+  if (contact.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center w-screen">
+        <h2 className="text-6xl text-slate-400">No contacts available</h2>
+        <p className="text-lg text-slate-400">You currently have no contacts. Please add some.</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <section className="w-full h-screen p-6">
@@ -61,8 +74,7 @@ export default function AdminContact() {
           </span>
         </div>
         <div className="grid grid-cols-3 gap-10 mt-10">
-          {contact &&
-            contact.map((current, index) => {
+          {contact.map((current, index) => {
               return (
                 <div
                   className="card border-2 border-blue-300 p-4 rounded-xl"

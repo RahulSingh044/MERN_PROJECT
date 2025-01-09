@@ -11,14 +11,13 @@ export const AuthProvider = ({ children }) => {
 
   const authToken = `Bearer ${token}`;
 
-  
   const storerTokenInLS = (serverToken) => {
     setToken(serverToken);
-    return localStorage.setItem("token", serverToken); 
+    return localStorage.setItem("token", serverToken);
   };
 
   const LogoutUser = () => {
-    setToken(""); 
+    setToken("");
     localStorage.removeItem("token");
     setIsLoggedIn(false);
   };
@@ -28,22 +27,21 @@ export const AuthProvider = ({ children }) => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_BASEURL}/api/auth/user`,
+        `http://Localhost:5000/api/auth/user`,
         {
-            
           method: "GET",
           headers: {
             Authorization: authToken,
           },
         }
       );
-
       if (response.ok) {
         const data = await response.json();
+        console.log(data.userData); // Verify the API structure
         setUser(data.userData);
+        setIsLoading(false);
       } else {
         setIsLoggedIn(false);
-        setUser(null);
       }
       setIsLoading(false);
     } catch (error) {
@@ -74,17 +72,19 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
-      setIsLoggedIn(true); 
+      setIsLoggedIn(true);
       setToken(storedToken);
     } else {
-      setIsLoggedIn(false); 
+      setIsLoggedIn(false);
     }
-
+    userAuthentication();
     getServices();
-    if (isLoggedIn) {
-      userAuthentication();
-    }
-  }, [isLoggedIn]);
+  }, [token]);
+
+  useEffect(() => {
+    console.log("useeffect",user); // This will log the updated user data after it's set
+  }, [user]);
+
 
   return (
     <AuthContext.Provider

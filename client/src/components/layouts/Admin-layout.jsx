@@ -4,21 +4,17 @@ import { FaUser } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { RiContactsBook3Fill } from "react-icons/ri";
-import { useAuth } from '../../store/Auth'
-import { ReactLoading } from 'react-loading';
+import { useAuth } from "../../store/Auth";
 
-export default function Adminlayout() {
+function Adminlayout() {
   const navigate = useNavigate();
   const { user, isLoading } = useAuth();
 
-
   if(isLoading) {
-    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-    <ReactLoading type="spin" color="#3498db" height={50} width={50} />
-  </div>
+    return <h1>Loading...</h1>
   }
 
-  if(!user.isAdmin){
+  if(!user || !user.isAdmin) {
     return <Navigate to='/' />;
   }
 
@@ -67,3 +63,5 @@ export default function Adminlayout() {
     </div>
   );
 }
+
+export default Adminlayout;
